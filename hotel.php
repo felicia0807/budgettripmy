@@ -10,7 +10,7 @@ if(isset($_GET['search_word'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Travel Advisor API</title>
+    <title>Budget Trip</title>
     <!-- Bootstrap css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -26,7 +26,10 @@ if(isset($_GET['search_word'])){
 <body>
 
 <section class="header" style="background-color: #ECEFF1;">
-
+        <div class="heading" >
+        <h1 style="color:black ;">Hotels</h1>
+        </div>
+    
 <a class="navbar-brand me-2" href="home.php">
       <img
         src="images/logo2.jpg"
