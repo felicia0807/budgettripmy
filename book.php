@@ -28,10 +28,11 @@ if(isset($_POST['submit'])){
 <title>Booking Page</title>
     <!-- Bootstrap css -->
 <!-- Bootstrap css -->
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-
-
+<!-- CSS Styling -->
+<link rel="stylesheet"  href="css/style.css"/>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -65,7 +66,7 @@ if(isset($_POST['submit'])){
 
 <section class="header" style="background-color: #ECEFF1;">
 
-<a class="navbar-brand me-2" href="home.php">
+<a class="navbar-brand me-2" href="index.php">
       <img
         src="images/logo2.jpg"
         height="48"
@@ -80,7 +81,7 @@ if(isset($_POST['submit'])){
 
 <section class="previous" >
     <div>
-    <a href="hotel.php" class="previous"  style="text-decoration:none; display:inline-block; padding: 8px 16px; margin:10px;  ">&#8249; Back</a>
+    <a href="hotel.php" class="previous"  style="text-decoration:none; display:inline-block; padding: 8px 16px; position:absolute; left:0px;  ">&#8249; Back</a>
     </div>
 
 </section>
@@ -147,22 +148,23 @@ if(isset($_POST['submit'])){
                 <p class="text-left">Total Amount: MYR <?php echo $amount; ?> </p>
             </div>
             <div class="modal-footer">
-                <a href='home.php' class='btn btn-primary'>Go Back to Home Page</a>
+                <a href='index.php' class='btn btn-primary'>Go Back to Home Page</a>
             </div>
             </div>
         </div>
     </div>
 
 
-    <div class="container my-3">
-        <div class="row">
-            <div class="col-lg-4">
+  
+    <div class="card lg-3"style="max-width: 100%;">
+        <div class="row ">
+            <div class="col-md-4">
             <figure class="figure">
                 <img src="<?php echo $attrImg ?>" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
                 <figcaption class="figure-caption"><?php echo $attrName ?></figcaption>
             </figure>
             </div>
-            <div class="col-lg-8">
+            <div class="col-md-8">
                 <form method="POST">
 
                     <!-- Location id -->
@@ -182,7 +184,7 @@ if(isset($_POST['submit'])){
                     <div class="cart-container">
                         <label>Adult</label>
                         
-                        <p> MYR <span id="price"><?php echo $attrPrice ?></span></p>
+                        <p><span id="price"><?php echo $attrPrice ?></span></p>
 
                         <div class="inputCounter">
                             <button type="button" class="btn" id="minus"><i class='bx bx-minus'></i></button>
@@ -193,8 +195,7 @@ if(isset($_POST['submit'])){
 
                     <!-- Total Amount -->
                     <div class="adultAmountContainer my-3">
-                        <p><strong>Total</strong></p>
-                        <p>MYR <span id="totalAmount"><?php echo $attrPrice ?></span></p>
+                        <p><strong>Total Pax</strong></p>
                     </div>
                     <input type="hidden" id="amount" name="amount" value="<?php echo $attrPrice ?>">
 
@@ -210,10 +211,10 @@ if(isset($_POST['submit'])){
     
     <script >
         let minusBtn = document.querySelector("#minus")
-let plusBtn = document.querySelector("#plus")
-let counterElement = document.querySelector("#counter")
-console.log(counterElement);
-  let counter = counterElement.value;
+        let plusBtn = document.querySelector("#plus")
+        let counterElement = document.querySelector("#counter")
+        console.log(counterElement);
+        let counter = counterElement.value;
 
 
 

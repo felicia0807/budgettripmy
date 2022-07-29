@@ -22,7 +22,7 @@
 
 <section class="header" style="background-color: #ECEFF1;">
 
-<a class="navbar-brand me-2" href="home.php">
+<a class="navbar-brand me-2" href="index.php">
       <img
         src="images/logo2.jpg"
         height="48"
@@ -42,13 +42,13 @@
 
 </section>
 
-<!-- header section ends -->
 
-<div class="heading" style="background:url(images/image5.jpg) no-repeat">
+
+<div class="heading" style="background:url(images/header-bg-2.png) no-repeat">
    <h1>about us</h1>
 </div>
 
-<!-- about section starts  -->
+
 
 <section class="about">
 
@@ -66,10 +66,6 @@
          <div class="icons">
             <i class="fas fa-coins"></i>
             <span>affordable price</span>
-         </div>
-         <div class="icons">
-            <i class="fas fa-headset"></i>
-            <span>24/7 Support</span>
          </div>
       </div>
    </div>

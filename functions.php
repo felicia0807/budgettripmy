@@ -1,14 +1,18 @@
 <?php
     function getAttraction($attr){
         $attraction = array();
-        $img = "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png";
-        $name = "No Name";
-        $description = "No Description";
+        $img = "";
+        $name = "";
+        $description = "";
         $price = "";
-        $rating = "0";
-        $location_id = "0";
+        $rating = "";
+        $location_id = "";
         $parent_display_name="";
-        $address="";
+        $address=null;
+
+        
+
+
         
         if(isset($attr['photo']['images']['original']['url'])){
             $img = $attr['photo']['images']['original']['url'];
@@ -71,8 +75,14 @@
 
     function getAttractionCard($attr){
         $stars = getStars($attr['rating']);
-        return "
+        
+        if (empty($attr['img'])){
+    
+            return '';
 
+        }
+       
+        return "
         <div class='col-md m-1'>
             <div class='card h-100'>
                 <img class='card-img-top' src='{$attr['img']}' alt='Card image cap' style='width:100%;height:180px;background-size: cover;'>
@@ -89,24 +99,24 @@
                     <h5='card-text description'>Address: {$attr['address']}</h5>
                 </div>
         
-
             </div>
         </div>
         
-        ";
+        ";  
+  
     }
 
 
     function getRestaurant($rest){
         $restaurant = array();
-        $img = "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png";
-        $name = "No Name";
-        $description = "No Description";
+        $img = "";
+        $name = "";
+        $description = "";
         $address="";
         $price_level = "";
-        $rating = "0";
-        $location_id = "0";
-        $phone = "0";
+        $rating = "";
+        $location_id = "";
+        $phone = "";
         
         if(isset($rest['photo']['images']['original']['url'])){
             $img = $rest['photo']['images']['original']['url'];
@@ -167,8 +177,12 @@
 
     function getRestaurantCard($rest){
         $stars = getStarss($rest['rating']);
-        return "
+        if (empty($rest['img'])){
+    
+            return '';
 
+        }
+        return "
         <div class='col-md m-1'>
             <div class='card h-100'>
                 <img class='card-img-top' src='{$rest['img']}' alt='Card image cap' style='width:100%;height:180px;background-size: cover;'>
@@ -195,13 +209,13 @@
 
     function getHotel($hotl){
         $hotel = array();
-        $img = "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png";
-        $name = "No Name";
-        $description = "No Description";
+        $img = "";
+        $name = "";
+        $description = "";
         $address="";
-        $price = "MYR 0.00";
-        $rating = "0";
-        $location_id = "0";
+        $price = "";
+        $rating = "";
+        $location_id = "";
         $location_string="";
         
         if(isset($hotl['photo']['images']['original']['url'])){
@@ -263,8 +277,12 @@
 
     function getHotelCard($hotl){
         $stars = getStarss($hotl['rating']);
-        return "
+        if (empty($hotl['img'])){
+    
+            return '';
 
+        }
+        return "
         <div class='col-md m-1'>
             <div class='card h-100'>
                 <img class='card-img-top' src='{$hotl['img']}' alt='Card image cap' style='width:100%;height:180px;background-size: cover;'>
@@ -283,7 +301,7 @@
                 </div>
         
                 <div class='card-footer text-center'>
-                    <a href='book.php?location_id={$hotl['location_id']}' class='btn btn-primary'><i class='bx bxs-hand-up' ></i> Book Now</a>
+                    <a href='book.php?location_id={$hotl['location_id']}' class='btn btn-info'><i class='bx bxs-cart' ></i> Book Now</a>
                 </div>
             </div>
         </div>

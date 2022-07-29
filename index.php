@@ -1,9 +1,18 @@
-<?php 
-session_start();
+<?php
+ session_start();
+//  if (!isset($_SESSION['SESSION_EMAIL'])) {
+ //  header("Location: login.php");
+  // die();
+//}
 
-if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) 
+include 'includes/dbh.inc.php';
 
- ?>
+//$query = mysqli_query($conn, "SELECT * FROM users_data WHERE email='{$_SESSION['SESSION_EMAIL']}'");
+
+//if (mysqli_num_rows($query) > 0) {
+//   $row = mysqli_fetch_assoc($query);
+//}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +37,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']))
 
 <section class="header" style="background-color: #ECEFF1;">
 
-<a class="navbar-brand me-2" href="home.php">
+<a class="navbar-brand me-2" href="index.php">
       <img
         src="images/logo2.jpg"
         height="48"
@@ -41,7 +50,17 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']))
    <nav class="navbar" >
       <a href="attractions.php">VIEWS</a>
       <a href="about.php">ABOUT US</a>
-      <a href="login.php" style=" font-family:monospace; color:gray">LOGIN</a>
+      <a href='login.php'>LOGIN</a>
+      <!--?php if(empty($row['name'])){
+      "<a href='login.php'>LOGIN</a>";
+      }
+       else{
+         echo "<a>Welcome " . $row['name'] . "</a>";
+       }
+
+
+      ?-->
+
 
    
    </nav>
@@ -229,6 +248,20 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']))
 
 <!-- custom js file link  -->
 <script>
+
+let menu = document.querySelector('#menu-btn');
+let navbar = document.querySelector('.header .navbar');
+
+menu.onclick = () =>{
+   menu.classList.toggle('fa-times');
+   navbar.classList.toggle('active');
+};
+
+window.onscroll = () =>{
+   menu.classList.remove('fa-times');
+   navbar.classList.remove('active');
+};
+
  var swiper = new Swiper(".home-slider", {
     loop:true,
     navigation: {

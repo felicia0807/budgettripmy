@@ -1,4 +1,58 @@
+<?php
 
+    //use PHPMailer\PHPMailer\PHPMailer;
+    //use PHPMailer\PHPMailer\SMTP;
+    //use PHPMailer\PHPMailer\Exception;
+
+    //Load Composer's autoloader
+    //require 'vendor/autoload.php';
+
+
+include 'includes/dbh.inc.php';
+
+$msg="";
+
+if(isset($_POST['submit'])){
+
+      $name=mysqli_real_escape_string($conn,$_POST['name']);
+      $username=mysqli_real_escape_string($conn,$_POST['username']);
+      $password=mysqli_real_escape_string($conn,md5($_POST['password']));
+      $re_password=mysqli_real_escape_string($conn,md5($_POST['re_password']));
+      $email=mysqli_real_escape_string($conn,$_POST['email']);
+      $phoneno=mysqli_real_escape_string($conn,$_POST['phoneno']);
+      $code = mysqli_real_escape_string($conn, md5(rand()));
+
+      if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users_data WHERE email='{$email}'")) > 0) {
+
+            
+            $msg="<div class='alert alert-danger'>{$email} is already exists</div>";
+
+      }
+      else{
+            if($password === $re_password){
+              
+                  $sql="INSERT INTO users_data (name, user_name, password, email, phoneno, code) VALUES('{$name}','{$username}','{$password}','{$email}','{$phoneno}','{$code}')";
+                  $result=mysqli_query($conn, $sql);
+
+                  if($result){
+
+                          $msg="<div class='alert alert-info'>Register successfully</div>";
+                  }else{
+
+                        $msg="<div class='alert alert-danger'>Something went wrong!</div>";
+                  }
+
+            }
+            else{
+      
+                  $msg="<div class='alert alert-danger'>Password not match</div>";
+            }
+
+      }
+     
+}
+
+?>
 
 
 <!DOCTYPE html>
@@ -8,6 +62,8 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>register page</title>
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
    <!-- swiper css link  -->
    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
@@ -31,41 +87,20 @@
 
 <div class="form-container">
 
-<form action="includes/signup.inc.php" method="post">
+<form action="" method="post">
 
 <h2>register now</h2>
-        <?php if (isset($_GET['error'])) { ?>
-     		<p class="error"><?php echo $_GET['error']; ?></p>
-     	  <?php } ?>
-
-        <?php if (isset($_GET['success'])) { ?>
-        <p class="success"><?php echo $_GET['success']; ?></p>
-        <?php } ?>
-
+        <?php 
+         echo $msg
+     	  ?>
       
-        <?php if (isset($_GET['name'])) { ?>
-        <input type="text" name="name" placeholder="Name" value="<?php echo $_GET['name']; ?>"><br>
-        <?php }else{ ?>
-               <input type="text"  name="name" placeholder="Name"><br> <?php }?>
-                     
-                      
-        <?php if (isset($_GET['uname'])) { ?>
-               <input type="text"  name="uname"  placeholder="User Name"value="<?php echo $_GET['uname']; ?>"><br>                                                             
-         <?php }else{ ?>
-               <input type="text"  name="uname"  placeholder="User Name"><br> <?php }?>
-    
-       	<input type="password" name="password"  placeholder="Password"><br>
-                 
+        <input type="text" class="name" name="name" placeholder="Enter Your Name" value="<?php if (isset($_POST['submit'])) { echo $name; } ?>" required>
+        <input type="text" class="username" name="username" placeholder="Enter Your Username" value="<?php if (isset($_POST['submit'])) { echo $username; } ?>" required>
+        <input type="email" class="email" name="email" placeholder="Enter Your Email" value="<?php if (isset($_POST['submit'])) { echo $email; } ?>" required> 
+        <input type="password" name="password"  placeholder="Password"><br>             
         <input type="password"name="re_password" placeholder="Confirm Password"><br>
-       <?php if (isset($_GET['email'])) { ?>
-               <input type="email"  name="email"  placeholder="Email"value="<?php echo $_GET['email']; ?>"><br>                                                             
-         <?php }else{ ?>
-               <input type="email"  name="email"  placeholder="Email"><br> <?php }?>
-
-               <?php if (isset($_GET['phoneno'])) { ?>
-               <input type="tel"  name="phoneno"  placeholder="Phone Number"value="<?php echo $_GET['phoneno']; ?>"><br>                                                             
-         <?php }else{ ?>
-               <input type="tel"  name="phoneno"  placeholder="Phone Number"><br> <?php }?>               
+        <input type="text" class="phoneno" name="phoneno" placeholder="Enter Your Phone No" value="<?php if (isset($_POST['submit'])) { echo $phoneno; } ?>" required> 
+             
 
                
        <input type="submit" name="submit" value="Sign up now" class="form-btn">

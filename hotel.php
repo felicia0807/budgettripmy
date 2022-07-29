@@ -26,11 +26,8 @@ if(isset($_GET['search_word'])){
 <body>
 
 <section class="header" style="background-color: #ECEFF1;">
-        <div class="heading" >
-        <h1 style="color:black ;">Hotels</h1>
-        </div>
-    
-<a class="navbar-brand me-2" href="home.php">
+
+<a class="navbar-brand me-2" href="index.php">
       <img
         src="images/logo2.jpg"
         height="48"
@@ -43,26 +40,37 @@ if(isset($_GET['search_word'])){
    <nav class="navbar" >
    <a href="attractions.php"  style="text-decoration:none;">VIEWS</a>
       <a href="about.php"  style="text-decoration:none;">ABOUT US</a>
-      <a href="login.php"  style="text-decoration:none;">Login</a>
+      <a href="login.php"  style="text-decoration:none;">LOGIN</a>
 
    
    </nav>
 
-   <div id="menu-btn" class="fas fa-bars"></div>
+   <div id="menu-btn" class="bx bx-menu"></div>
 
 </section>
+
+        <div class="heading" >
+        <h1 style="color:black ;">Hotels</h1>
+        </div>
 
     <div class="container">
         <!-- Search Bar -->
         <!-- https://www.w3schools.com/php/php_form_validation.asp -->
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="get" class="my-3">
-        <div class="input-group">
-                <div class="search-container">
-                <input type="search" class="form-control rounded" placeholder="Search..." aria-label="Search" aria-describedby="search-addon" name="search_word" />
-                <button type="submit" class="btn btn-primary"><i class='bx bx-search-alt' ></i></button>
+            <div class="wrapper">
+                <div class="search-input">
+                <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="search-addon" name="search_word" />
+                <div class="icon"><i class='bx bx-search-alt' ></i></div>
                 </div>
     
             </div>
+
+            <select onchange="location = this.value;">
+                <option value="attractions.php">Hotel</option>
+                <option value="restaurant.php">Attractions</option>
+                <option value="hotel.php">Restaurant</option>
+
+        </select>
         </form>
 
     
@@ -80,7 +88,7 @@ if(isset($_GET['search_word'])){
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => [
                 "X-RapidAPI-Host: travel-advisor.p.rapidapi.com",
-                "X-RapidAPI-Key: 3940bd9bf8mshf25e4fda864a1d9p101c88jsnb92a927bc07e"
+                "X-RapidAPI-Key: 61008f925amshe10cdf1d8da1c9dp10faeajsn82fdf95c5606"
             ],
         ]);
 
