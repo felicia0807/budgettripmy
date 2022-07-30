@@ -140,7 +140,7 @@ include 'includes/dbh.inc.php';
          <div class="swiper-slide slide">
          <img src="images/img5.jpg" alt="">
             <h3>Malacca, Malaysia</h3>
-            <a href="package.php" class="btn">discover more</a>
+            <a href="attractions.php" class="btn">discover more</a>
            
          </div>
 
