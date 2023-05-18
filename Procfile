@@ -1,1 +1,1 @@
-web: node index.php
+web: php -S 0.0.0.0:$PORT -t public/
